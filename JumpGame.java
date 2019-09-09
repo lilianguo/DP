@@ -3,6 +3,7 @@ class JumpGame {
         // write your code here
         // dp[i] 表示能否到达第i个位置
         // 什么时候能到达i, 之前只要有一个位置j 满足 j 能到达 && j 到 i的步数 <= j位置最多能跳的步数
+        // O(n^2)
         int n = A.length;
         boolean[] dp = new boolean[A.length];
         dp[0] = true;
