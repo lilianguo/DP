@@ -8,8 +8,8 @@ class JumpGame {
         dp[0] = true;
         for (int i = 1; i < n; i++) {
             dp[i] = false;
-            for (int j = 0; j < i; i++) {
-                if (dp[j] && A[j] > (i - j)) {
+            for (int j = 0; j < i; j++) {
+                if (dp[j] && A[j] >= (i - j)) {
                     dp[i] = true;
                     break;
                 }
