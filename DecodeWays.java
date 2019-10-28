@@ -30,6 +30,22 @@ Explanation: It could be decoded as "BZ" (2 26), "VF" (22 6), or "BBF" (2 2 6).
 
 
 https://www.jiuzhang.com/solution/decode-ways/
+
+动态规划.
+
+设定状态: f[i] 表示字符串前i位有多少种解码方案
+
+状态转移方程:
+
+初始化 f 数组为 0
+若字符串中 s[i] 表示的阿拉伯数字在 1~9 范围内, f[i] += f[i-1]
+若s[i-1]和s[i]连起来表示的数字在 10~26 范围内, f[i] += f[i-2] (若i==1, 则f[i] += 1)
+边界: f[0] = 1
+
+特判:
+
+如果字符串以 '0' 开头, 则直接返回0.
+如果运算中发现 f[i] == 0, 则说明此处无法解码, 同样直接返回0.
 */
 
 class DecodeWays {
@@ -45,7 +61,7 @@ class DecodeWays {
             if (s.charAt(i - 1) != '0') {
                 nums[i] = nums[i - 1];
             }
-            int twoDigit = (s.charAt(i - 2) - '0') * 10 + s.charAt(i - 1) - '0';
+            int twoDigits = (s.charAt(i - 2) - '0') * 10 + s.charAt(i - 1) - '0';
             if (twoDigits >= 10 && twoDigits <= 26) {
                 nums[i] += nums[i - 2];
             }
